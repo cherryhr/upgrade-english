@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U2 Classroom Commands - 课堂指令</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #e67e22; border-bottom: 2px solid #e67e22; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #e67e22; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #fef5e7; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #fad7a0; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(230,126,34,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #d35400; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #e67e22; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #fef5e7; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #fad7a0; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #fad7a0; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #e67e22; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #fef5e7; padding: 15px; border-radius: 10px; border: 1px solid #fad7a0; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(230,126,34,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎯 U2 Classroom Commands</h1>
+    <p style="text-align:center;color:#888;">课堂指令 · Sit down · Stand up · Listen</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('sit down')">
+            <span class="vocab-emoji">🪑</span>
+            <div class="vocab-text"><strong>sit down</strong><span>坐下</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('stand up')">
+            <span class="vocab-emoji">🧍</span>
+            <div class="vocab-text"><strong>stand up</strong><span>站起来</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('listen')">
+            <span class="vocab-emoji">👂</span>
+            <div class="vocab-text"><strong>listen</strong><span>听</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('look')">
+            <span class="vocab-emoji">👀</span>
+            <div class="vocab-text"><strong>look</strong><span>看</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('raise your hand')">
+            <span class="vocab-emoji">✋</span>
+            <div class="vocab-text"><strong>raise your hand</strong><span>举手</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('open your book')">
+            <span class="vocab-emoji">📖</span>
+            <div class="vocab-text"><strong>open your book</strong><span>打开书</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('close your book')">
+            <span class="vocab-emoji">📕</span>
+            <div class="vocab-text"><strong>close your book</strong><span>合上书</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('be quiet')">
+            <span class="vocab-emoji">🤫</span>
+            <div class="vocab-text"><strong>be quiet</strong><span>安静</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you sit down, please?')">🔊</button>
+                <div><div>Can you sit down, please?</div><div class="bubble-cn">请你坐下好吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I can! I am sitting down.')">🔊</button>
+                <div><div>Yes, I can! I am sitting down.</div><div class="bubble-cn">好的！我坐下了。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you stand up?')">🔊</button>
+                <div><div>Can you stand up?</div><div class="bubble-cn">你能站起来吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I can stand up!')">🔊</button>
+                <div><div>Yes, I can stand up!</div><div class="bubble-cn">我能站起来！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('Please listen to me.')">🔊</button>
+                <div><div>Please listen to me.</div><div class="bubble-cn">请听我说。</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('OK! I am listening.')">🔊</button>
+                <div><div>OK! I am listening.</div><div class="bubble-cn">好的！我在听。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you raise your hand?')">🔊</button>
+                <div><div>Can you raise your hand?</div><div class="bubble-cn">你能举起手吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I raise my hand!')">🔊</button>
+                <div><div>Yes! I raise my hand!</div><div class="bubble-cn">好的！我举起手来了！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('Please open your book.')">🔊</button>
+                <div><div>Please open your book.</div><div class="bubble-cn">请打开你的书。</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('OK! I open my book.')">🔊</button>
+                <div><div>OK! I open my book.</div><div class="bubble-cn">好的！我打开书了。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Are you ready?')">🔊</button>
+                <div><div>Are you ready?</div><div class="bubble-cn">你准备好了吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I am ready!')">🔊</button>
+                <div><div>Yes, I am ready!</div><div class="bubble-cn">是的，我准备好了！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#e67e22;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>👩‍🏫 <strong>Teacher:</strong> Good morning! Can you sit down, please?</p>
+            <p>🧒 <strong>Student:</strong> Yes, I can! I am sitting down.</p>
+            <p>👩‍🏫 <strong>Teacher:</strong> Please open your book. Are you ready?</p>
+            <p>🧒 <strong>Student:</strong> Yes, I am ready! I open my book.</p>
+            <p>👩‍🏫 <strong>Teacher:</strong> Can you raise your hand if you know the answer?</p>
+            <p>🧒 <strong>Student:</strong> Yes! I raise my hand! I know!</p>
+            <p>👩‍🏫 <strong>Teacher:</strong> Great! Now please close your book. Bye bye!</p>
+            <p>🧒 <strong>Student:</strong> Bye bye, teacher!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('simon')">
+            <span class="game-emoji">🎮</span>
+            <strong>Simon Says 西蒙说</strong><br>
+            <small>听指令做动作："Simon says sit down!" 做动作，不带 Simon says 就不动</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('relay')">
+            <span class="game-emoji">🏃</span>
+            <strong>指令接力 Command Relay</strong><br>
+            <small>一人说指令，另一人做动作并用"Yes, I can!"回应</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('song')">
+            <span class="game-emoji">🎵</span>
+            <strong>指令歌曲 Command Song</strong><br>
+            <small>跟着歌曲做动作：If you're happy and you know it...</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('quiz')">
+            <span class="game-emoji">🎓</span>
+            <strong>知识闯关 Quiz</strong><br>
+            <small>回答问题，测试你的课堂指令知识</small><br>
+            <small style="color:#e67e22;"><a href="game-quiz.html" style="color:#e67e22;text-decoration:none;">开始游戏 →</a></small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Good morning! Can you sit down, please?", delay: 0 },
+        { text: "Yes, I can! I am sitting down.", delay: 2800 },
+        { text: "Please open your book. Are you ready?", delay: 5500 },
+        { text: "Yes, I am ready! I open my book.", delay: 8500 },
+        { text: "Can you raise your hand if you know the answer?", delay: 11000 },
+        { text: "Yes! I raise my hand! I know!", delay: 14500 },
+        { text: "Great! Now please close your book. Bye bye!", delay: 17000 },
+        { text: "Bye bye, teacher!", delay: 20000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        simon: '🎮 Simon Says 西蒙说：一人当 Simon，说"Simon says stand up!"大家都站起来。但如果只说"Stand up!"（不加Simon says），就不能做动作，做了就输！',
+        relay: '🏃 指令接力：分两组，A组说指令，B组做动作并回应"Yes, I can!"。然后互换角色。',
+        song: '🎵 指令歌曲：跟唱"If you\'re happy and you know it, clap your hands! If you\'re happy and you know it, stand up!" 边唱边做动作！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

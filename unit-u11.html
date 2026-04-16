@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U11 Toys & Play - 玩具游戏</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6; margin: 0; padding: 20px;
+            background-color: #f5f5f5; color: #333;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto; background: white;
+            padding: 30px; border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #3498db; }
+
+        .vocabulary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .vocab-item {
+            display: flex; align-items: center; padding: 12px;
+            background: #e8f4f8; border-radius: 8px; cursor: pointer;
+            transition: all 0.2s; position: relative; border: 1px solid #bee3f8;
+        }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(52,152,219,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #2980b9; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn {
+            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+            background: #3498db; color: white; border: none; border-radius: 50%;
+            width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .speak-btn:hover { opacity: 1; }
+
+        .dialog-box {
+            background: #e8f4f8; border-radius: 10px; padding: 20px;
+            margin: 20px 0; border: 1px solid #bee3f8;
+        }
+        .dialog-pair {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #bee3f8;
+        }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px;
+        }
+        .bubble.ask { background: #3498db; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #9b59b6; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak {
+            background: rgba(255,255,255,0.25); border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .game-card {
+            background: #e8f4f8; padding: 15px; border-radius: 10px;
+            border: 1px solid #bee3f8; cursor: pointer; transition: box-shadow 0.2s;
+        }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(52,152,219,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧸 U11 Toys &amp; Play</h1>
+    <p style="text-align:center;color:#888;">玩具游戏 · Doll · Car · Ball · Blocks</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('doll')">
+            <span class="vocab-emoji">🪆</span>
+            <div class="vocab-text"><strong>doll</strong><span>洋娃娃</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('car')">
+            <span class="vocab-emoji">🚗</span>
+            <div class="vocab-text"><strong>car</strong><span>小汽车</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('ball')">
+            <span class="vocab-emoji">⚽</span>
+            <div class="vocab-text"><strong>ball</strong><span>球</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('blocks')">
+            <span class="vocab-emoji">🧩</span>
+            <div class="vocab-text"><strong>blocks</strong><span>积木</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('balloon')">
+            <span class="vocab-emoji">🎈</span>
+            <div class="vocab-text"><strong>balloon</strong><span>气球</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('kite')">
+            <span class="vocab-emoji">🪁</span>
+            <div class="vocab-text"><strong>kite</strong><span>风筝</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('crayons')">
+            <span class="vocab-emoji">🖍️</span>
+            <div class="vocab-text"><strong>crayons</strong><span>蜡笔</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('teddy bear')">
+            <span class="vocab-emoji">🧸</span>
+            <div class="vocab-text"><strong>teddy bear</strong><span>泰迪熊</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you have a ball?')">🔊</button>
+                <div><div>Do you have a ball?</div><div class="bubble-cn">你有球吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I have a ball!')">🔊</button>
+                <div><div>Yes, I have a ball!</div><div class="bubble-cn">是的，我有一个球！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('I have a teddy bear.')">🔊</button>
+                <div><div>I have a teddy bear.</div><div class="bubble-cn">我有一只泰迪熊。</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Wow! I like teddy bears too!')">🔊</button>
+                <div><div>Wow! I like teddy bears too!</div><div class="bubble-cn">哇！我也喜欢泰迪熊！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can I play with it?')">🔊</button>
+                <div><div>Can I play with it?</div><div class="bubble-cn">我可以玩它吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, you can! Let us play together!')">🔊</button>
+                <div><div>Yes, you can! Let's play together!</div><div class="bubble-cn">可以！我们一起玩吧！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What is your favorite toy?')">🔊</button>
+                <div><div>What is your favorite toy?</div><div class="bubble-cn">你最喜欢的玩具是什么？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('My favorite toy is a car!')">🔊</button>
+                <div><div>My favorite toy is a car!</div><div class="bubble-cn">我最喜欢的玩具是小汽车！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('My turn! Your turn!')">🔊</button>
+                <div><div>My turn! Your turn!</div><div class="bubble-cn">轮到我了！轮到你了！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('OK! I share my toys with you!')">🔊</button>
+                <div><div>OK! I share my toys with you!</div><div class="bubble-cn">好的！我和你分享我的玩具！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#3498db;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Do you have a ball?</p>
+            <p>👧 <strong>Amy:</strong> Yes, I have a ball! Do you want to play?</p>
+            <p>🧒 <strong>Tom:</strong> Yes! Can I play with it?</p>
+            <p>👧 <strong>Amy:</strong> Yes, you can! Let's play together!</p>
+            <p>🧒 <strong>Tom:</strong> Thank you! My turn! Your turn!</p>
+            <p>👧 <strong>Amy:</strong> I share my toys with you! We are friends!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('shop')">
+            <span class="game-emoji">🎁</span>
+            <strong>玩具商店 Toy Shop</strong><br>
+            <small>用英语买卖玩具：Do you have a ball? How much?</small><br>
+            <small style="color:#3498db;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('share')">
+            <span class="game-emoji">🤝</span>
+            <strong>分享游戏 Sharing Game</strong><br>
+            <small>练习 Can I play? / Yes, you can! 学习分享</small><br>
+            <small style="color:#3498db;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('sort')">
+            <span class="game-emoji">🎯</span>
+            <strong>玩具分类 Toy Sort</strong><br>
+            <small>按类型、颜色、大小分类玩具</small><br>
+            <small style="color:#3498db;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('story')">
+            <span class="game-emoji">🎭</span>
+            <strong>玩具故事 Toy Story</strong><br>
+            <small>用玩具编一个小故事</small><br>
+            <small style="color:#3498db;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Do you have a ball?", delay: 0 },
+        { text: "Yes, I have a ball! Do you want to play?", delay: 2000 },
+        { text: "Yes! Can I play with it?", delay: 5000 },
+        { text: "Yes, you can! Let's play together!", delay: 7500 },
+        { text: "Thank you! My turn! Your turn!", delay: 10500 },
+        { text: "I share my toys with you! We are friends!", delay: 13000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        shop: '🎁 玩具商店：一人当售货员，一人当顾客。"Do you have a ball?" / "Yes, I have a ball!" / "Can I have it?" / "Yes, you can!"',
+        share: '🤝 分享游戏：准备玩具，轮流说 "Can I play with your toy?" 对方回答 "Yes, you can! / No, sorry." 练习礼貌用语。',
+        sort: '🎯 玩具分类：说出各种玩具名称，按颜色或类型排列。"This is a red car!" / "This is a big ball!"',
+        story: '🎭 玩具故事：拿起玩具，用简单英语讲故事。"I have a bear. His name is Teddy. I love Teddy!"',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

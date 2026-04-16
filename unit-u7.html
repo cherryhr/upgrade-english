@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U7 Animals - 动物世界</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6; margin: 0; padding: 20px;
+            background-color: #f0fff4; color: #333;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto; background: white;
+            padding: 30px; border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #27ae60; text-align: center; margin-bottom: 10px; }
+        h2 { color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #27ae60; }
+
+        .vocabulary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px; margin: 20px 0;
+        }
+        .vocab-item {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 15px 10px; background: #f0fff4;
+            border-radius: 12px; border: 2px solid #b2dfdb;
+            cursor: pointer; transition: all 0.2s; text-align: center; position: relative;
+        }
+        .vocab-item:hover { box-shadow: 0 4px 12px rgba(39,174,96,0.2); transform: translateY(-2px); border-color: #27ae60; }
+        .vocab-emoji { font-size: 38px; margin-bottom: 6px; }
+        .vocab-text strong { display: block; font-size: 16px; color: #1a7a4a; }
+        .vocab-text span { font-size: 12px; color: #888; }
+        .speak-btn {
+            position: absolute; top: 6px; right: 8px;
+            background: #27ae60; color: white; border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 11px; cursor: pointer; opacity: 0.7;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .speak-btn:hover { opacity: 1; }
+
+        .dialog-box {
+            background: #f0fff4; border-radius: 10px; padding: 20px;
+            margin: 20px 0; border: 1px solid #b2dfdb;
+        }
+        .dialog-pair {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #b2dfdb;
+        }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px;
+        }
+        .bubble.ask { background: #3498db; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #f39c12; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak {
+            background: rgba(255,255,255,0.25); border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .game-card {
+            background: #f0fff4; padding: 15px; border-radius: 10px;
+            border: 1px solid #b2dfdb; text-align: center; cursor: pointer; transition: box-shadow 0.2s;
+        }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(39,174,96,0.2); }
+        .game-emoji { font-size: 32px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🦁 U7 Animals</h1>
+    <p style="text-align:center;color:#888;">动物世界 · Cat · Dog · Bird · Fish</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <!-- VOCABULARY -->
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('cat')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐱</span>
+            <div class="vocab-text"><strong>cat</strong><span>猫</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('dog')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐶</span>
+            <div class="vocab-text"><strong>dog</strong><span>狗</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('bird')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐦</span>
+            <div class="vocab-text"><strong>bird</strong><span>鸟</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('fish')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐟</span>
+            <div class="vocab-text"><strong>fish</strong><span>鱼</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('rabbit')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐰</span>
+            <div class="vocab-text"><strong>rabbit</strong><span>兔子</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('mouse')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐭</span>
+            <div class="vocab-text"><strong>mouse</strong><span>老鼠</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('elephant')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🐘</span>
+            <div class="vocab-text"><strong>elephant</strong><span>大象</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('lion')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🦁</span>
+            <div class="vocab-text"><strong>lion</strong><span>狮子</span></div>
+        </div>
+    </div>
+
+    <!-- SENTENCE PATTERNS (全问答，无第三人称) -->
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What is this?')">🔊</button>
+                <div><div>What is this?</div><div class="bubble-cn">这是什么？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('It is a cat.')">🔊</button>
+                <div><div>It is a cat.</div><div class="bubble-cn">它是一只猫。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like cats?')">🔊</button>
+                <div><div>Do you like cats?</div><div class="bubble-cn">你喜欢猫吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I do! I like cats very much!')">🔊</button>
+                <div><div>Yes, I do! I like cats very much!</div><div class="bubble-cn">是的，我喜欢！我非常喜欢猫！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like dogs?')">🔊</button>
+                <div><div>Do you like dogs?</div><div class="bubble-cn">你喜欢狗吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I do. Dogs are my favourite!')">🔊</button>
+                <div><div>Yes, I do. Dogs are my favourite!</div><div class="bubble-cn">是的，我喜欢。狗是我最喜欢的！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you have a pet?')">🔊</button>
+                <div><div>Do you have a pet?</div><div class="bubble-cn">你有宠物吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I have a rabbit!')">🔊</button>
+                <div><div>Yes, I have a rabbit!</div><div class="bubble-cn">是的，我有一只兔子！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What does a cat say?')">🔊</button>
+                <div><div>What does a cat say?</div><div class="bubble-cn">猫怎么叫？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('A cat says meow meow!')">🔊</button>
+                <div><div>A cat says meow meow!</div><div class="bubble-cn">猫喵喵叫！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What does a dog say?')">🔊</button>
+                <div><div>What does a dog say?</div><div class="bubble-cn">狗怎么叫？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('A dog says woof woof!')">🔊</button>
+                <div><div>A dog says woof woof!</div><div class="bubble-cn">狗汪汪叫！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Which animal do you like?')">🔊</button>
+                <div><div>Which animal do you like?</div><div class="bubble-cn">你喜欢哪种动物？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I like elephants! They are big and strong!')">🔊</button>
+                <div><div>I like elephants! They are big and strong!</div><div class="bubble-cn">我喜欢大象！它们又大又强壮！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('I have a dog. I love my dog!')">🔊</button>
+                <div><div>I have a dog. I love my dog!</div><div class="bubble-cn">我有一只狗。我爱我的狗！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Wow! I love dogs too! Can I play with your dog?')">🔊</button>
+                <div><div>Wow! I love dogs too! Can I play with your dog?</div><div class="bubble-cn">哇！我也爱狗！我可以和你的狗玩吗？</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FULL DIALOG -->
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <p style="text-align:center;color:#888;font-size:13px;">👇 点击播放完整动物对话</p>
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#27ae60;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Look! What is this?</p>
+            <p>👧 <strong>Amy:</strong> It is a dog! Do you like dogs?</p>
+            <p>🧒 <strong>Tom:</strong> Yes, I do! I love dogs! Do you have a pet?</p>
+            <p>👧 <strong>Amy:</strong> Yes, I have a rabbit. Do you like rabbits?</p>
+            <p>🧒 <strong>Tom:</strong> Yes, I do! Rabbits are cute! What does a rabbit say?</p>
+            <p>👧 <strong>Amy:</strong> Rabbits are quiet! They do not make a sound!</p>
+            <p>🧒 <strong>Tom:</strong> Ha ha! You are right!</p>
+        </div>
+    </div>
+
+    <!-- GAMES -->
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('mime')">
+            <div class="game-emoji">🎭</div>
+            <strong>动物模仿 Animal Mime</strong><br>
+            <small>模仿动物，朋友猜："Are you a cat?"</small><br>
+            <small style="color:#27ae60;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('sound')">
+            <div class="game-emoji">🔊</div>
+            <strong>听声猜动物 Sound Guess</strong><br>
+            <small>听动物叫声，问 "What animal is this?"</small><br>
+            <small style="color:#27ae60;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('like')">
+            <div class="game-emoji">❤️</div>
+            <strong>我最喜欢 My Favourite</strong><br>
+            <small>互相问 "Do you like ___?" 统计班级最爱动物</small><br>
+            <small style="color:#27ae60;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('home')">
+            <div class="game-emoji">🏠</div>
+            <strong>动物回家 Animal Home</strong><br>
+            <small>帮动物找到家，说 "I put the dog here!"</small><br>
+            <small style="color:#27ae60;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+
+function playFullDialog() {
+    const lines = [
+        { text: "Look! What is this?", delay: 0 },
+        { text: "It is a dog! Do you like dogs?", delay: 2000 },
+        { text: "Yes, I do! I love dogs! Do you have a pet?", delay: 5000 },
+        { text: "Yes, I have a rabbit. Do you like rabbits?", delay: 9000 },
+        { text: "Yes, I do! Rabbits are cute! What does a rabbit say?", delay: 13000 },
+        { text: "Rabbits are quiet! They do not make a sound!", delay: 17500 },
+        { text: "Ha ha! You are right!", delay: 22000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+
+function playGame(type) {
+    const msgs = {
+        mime: '🎭 动物模仿：一个同学模仿动物的动作和声音，另一个用英语问 "Are you a ___?" — 对方回答 "Yes, I am!" 或 "No, I am not!"',
+        sound: '🔊 听声猜动物：用手机播放动物叫声，大家抢答 "It is a ___!" 答对后问 "Do you like ___?" 回答 "Yes, I do!" 或 "No, I don\'t."',
+        like: '❤️ 我最喜欢：每人问朋友 "Do you like dogs?" 朋友回答 "Yes, I do!" 或 "No, I don\'t. I like cats!" 统计全班最喜欢的动物！',
+        home: '🏠 动物回家：把动物图片放到正确的栖息地，说 "I put the fish in the water!" 或 "I put the bird in the tree!"'
+    };
+    alert(msgs[type]);
+}
+
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

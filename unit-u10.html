@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U10 Food I Like - 我爱美食</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #e67e22; border-bottom: 2px solid #e67e22; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #e67e22; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #fef9e7; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #f9e79f; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(230,126,34,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #d35400; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #e67e22; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #fef9e7; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #f9e79f; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #f9e79f; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #e67e22; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #fef9e7; padding: 15px; border-radius: 10px; border: 1px solid #f9e79f; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(230,126,34,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🍕 U10 Food I Like</h1>
+    <p style="text-align:center;color:#888;">我爱美食 · Yummy! · Do you like pizza?</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('apple')">
+            <span class="vocab-emoji">🍎</span>
+            <div class="vocab-text"><strong>apple</strong><span>苹果</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('banana')">
+            <span class="vocab-emoji">🍌</span>
+            <div class="vocab-text"><strong>banana</strong><span>香蕉</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('pizza')">
+            <span class="vocab-emoji">🍕</span>
+            <div class="vocab-text"><strong>pizza</strong><span>披萨</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('hamburger')">
+            <span class="vocab-emoji">🍔</span>
+            <div class="vocab-text"><strong>hamburger</strong><span>汉堡</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('ice cream')">
+            <span class="vocab-emoji">🍦</span>
+            <div class="vocab-text"><strong>ice cream</strong><span>冰淇淋</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('cake')">
+            <span class="vocab-emoji">🍰</span>
+            <div class="vocab-text"><strong>cake</strong><span>蛋糕</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('milk')">
+            <span class="vocab-emoji">🥛</span>
+            <div class="vocab-text"><strong>milk</strong><span>牛奶</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('juice')">
+            <span class="vocab-emoji">🧃</span>
+            <div class="vocab-text"><strong>juice</strong><span>果汁</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like pizza?')">🔊</button>
+                <div><div>Do you like pizza?</div><div class="bubble-cn">你喜欢披萨吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I do! Pizza is yummy!')">🔊</button>
+                <div><div>Yes, I do! Pizza is yummy!</div><div class="bubble-cn">是的，我喜欢！披萨很好吃！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like ice cream?')">🔊</button>
+                <div><div>Do you like ice cream?</div><div class="bubble-cn">你喜欢冰淇淋吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I do! Ice cream is delicious!')">🔊</button>
+                <div><div>Yes, I do! Ice cream is delicious!</div><div class="bubble-cn">是的，我喜欢！冰淇淋很美味！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like fish?')">🔊</button>
+                <div><div>Do you like fish?</div><div class="bubble-cn">你喜欢鱼吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('No, I do not! I do not like fish.')">🔊</button>
+                <div><div>No, I do not! I do not like fish.</div><div class="bubble-cn">不，我不喜欢！我不喜欢鱼。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What food do you like?')">🔊</button>
+                <div><div>What food do you like?</div><div class="bubble-cn">你喜欢什么食物？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I like apples and bananas! They are yummy!')">🔊</button>
+                <div><div>I like apples and bananas! They are yummy!</div><div class="bubble-cn">我喜欢苹果和香蕉！它们很好吃！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like milk or juice?')">🔊</button>
+                <div><div>Do you like milk or juice?</div><div class="bubble-cn">你喜欢牛奶还是果汁？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I like juice! Orange juice is my favorite!')">🔊</button>
+                <div><div>I like juice! Orange juice is my favorite!</div><div class="bubble-cn">我喜欢果汁！橙汁是我的最爱！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#e67e22;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Do you like pizza?</p>
+            <p>👧 <strong>Amy:</strong> Yes, I do! Pizza is yummy! Do you like ice cream?</p>
+            <p>🧒 <strong>Tom:</strong> Yes, I do! Ice cream is delicious! Do you like fish?</p>
+            <p>👧 <strong>Amy:</strong> No, I do not. I do not like fish. What food do you like?</p>
+            <p>🧒 <strong>Tom:</strong> I like apples and bananas! They are healthy!</p>
+            <p>👧 <strong>Amy:</strong> Do you like milk or juice?</p>
+            <p>🧒 <strong>Tom:</strong> I like milk! Milk is good for me!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('preference')">
+            <span class="game-emoji">🍽️</span>
+            <strong>食物喜好 Food Preference</strong><br>
+            <small>问同伴"Do you like ___?"，用Yes, I do! / No, I don't! 回答</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('restaurant')">
+            <span class="game-emoji">🎭</span>
+            <strong>餐厅游戏 Restaurant</strong><br>
+            <small>扮演顾客和服务员：Do you like pizza? Yes, I do! One pizza please!</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('sort')">
+            <span class="game-emoji">🎨</span>
+            <strong>食物分类 Food Sort</strong><br>
+            <small>将食物分类：水果/饮料/主食，说"I like ___ because..."</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('song')">
+            <span class="game-emoji">🎵</span>
+            <strong>食物歌 Food Song</strong><br>
+            <small>唱"Do You Like Broccoli? Yes, I do! Do you like pizza? No, I don't!"</small><br>
+            <small style="color:#e67e22;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Do you like pizza?", delay: 0 },
+        { text: "Yes, I do! Pizza is yummy! Do you like ice cream?", delay: 2000 },
+        { text: "Yes, I do! Ice cream is delicious! Do you like fish?", delay: 6500 },
+        { text: "No, I do not. I do not like fish. What food do you like?", delay: 11500 },
+        { text: "I like apples and bananas! They are healthy!", delay: 17000 },
+        { text: "Do you like milk or juice?", delay: 21000 },
+        { text: "I like milk! Milk is good for me!", delay: 23500 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        preference: '🍽️ 食物喜好：两人一组，轮流问"Do you like ___?" 对方回答"Yes, I do! / No, I don\'t!" 各问5种食物，看谁喜欢的食物更多！',
+        restaurant: '🎭 餐厅游戏：一人当服务员，一人当顾客。服务员问"Do you like pizza?"，顾客回答"Yes, I do! I would like pizza, please!" 然后互换角色。',
+        sort: '🎨 食物分类：把食物卡片按水果/主食/饮料分堆，每放一张说"This is an apple. I like apples!" 或 "I do not like broccoli!"',
+        song: '🎵 食物歌：Do you like broccoli? No, I don\'t! Do you like pizza? Yes, I do! 跟着节奏一边唱一边做喜欢/不喜欢的表情！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U12 Review & Mini Show - 综合复习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6; margin: 0; padding: 20px;
+            background-color: #f5f5f5; color: #333;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto; background: white;
+            padding: 30px; border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #3498db; }
+
+        .vocabulary-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .vocab-item {
+            display: flex; align-items: center; padding: 12px;
+            background: #e8f4f8; border-radius: 8px; cursor: pointer;
+            transition: all 0.2s; position: relative; border: 1px solid #bee3f8;
+        }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(52,152,219,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #2980b9; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn {
+            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+            background: #3498db; color: white; border: none; border-radius: 50%;
+            width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .speak-btn:hover { opacity: 1; }
+
+        .dialog-box {
+            background: #e8f4f8; border-radius: 10px; padding: 20px;
+            margin: 20px 0; border: 1px solid #bee3f8;
+        }
+        .dialog-pair {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #bee3f8;
+        }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px;
+        }
+        .bubble.ask { background: #3498db; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #9b59b6; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak {
+            background: rgba(255,255,255,0.25); border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+
+        .review-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .review-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 15px; border-radius: 10px;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .review-card:hover { transform: translateY(-2px); }
+        .review-card h3 { margin: 0 0 8px 0; font-size: 14px; }
+        .review-card p { margin: 0; font-size: 12px; opacity: 0.9; }
+
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .game-card {
+            background: #e8f4f8; padding: 15px; border-radius: 10px;
+            border: 1px solid #bee3f8; cursor: pointer; transition: box-shadow 0.2s;
+        }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(52,152,219,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+        .star-badge {
+            display: inline-block; background: #f39c12; color: white;
+            padding: 4px 12px; border-radius: 20px; font-size: 12px; margin: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎭 U12 Review &amp; Mini Show</h1>
+    <p style="text-align:center;color:#888;">综合复习与迷你演出 · Sing · Dance · Celebrate</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('show')">
+            <span class="vocab-emoji">🎭</span>
+            <div class="vocab-text"><strong>show</strong><span>表演</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('sing')">
+            <span class="vocab-emoji">🎤</span>
+            <div class="vocab-text"><strong>sing</strong><span>唱歌</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('dance')">
+            <span class="vocab-emoji">💃</span>
+            <div class="vocab-text"><strong>dance</strong><span>跳舞</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('speak')">
+            <span class="vocab-emoji">🗣️</span>
+            <div class="vocab-text"><strong>speak</strong><span>说话</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('clap')">
+            <span class="vocab-emoji">👏</span>
+            <div class="vocab-text"><strong>clap</strong><span>鼓掌</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('star')">
+            <span class="vocab-emoji">🌟</span>
+            <div class="vocab-text"><strong>star</strong><span>星星/明星</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('prize')">
+            <span class="vocab-emoji">🏆</span>
+            <div class="vocab-text"><strong>prize</strong><span>奖品</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('celebrate')">
+            <span class="vocab-emoji">🎉</span>
+            <div class="vocab-text"><strong>celebrate</strong><span>庆祝</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>🌈 我学会了什么 What I Learned</h2>
+    <div class="review-grid">
+        <div class="review-card" onclick="speak('Hello! My name is Amy. Nice to meet you!')">
+            <h3>👋 U1 问候语</h3>
+            <p>"Hello! My name is Amy."</p>
+        </div>
+        <div class="review-card" onclick="speak('Stand up! Sit down! Open your book!')">
+            <h3>📖 U2 课堂指令</h3>
+            <p>"Stand up! Open your book!"</p>
+        </div>
+        <div class="review-card" onclick="speak('I am happy! I am sad.')">
+            <h3>😊 U3 情绪</h3>
+            <p>"I am happy! I am sad."</p>
+        </div>
+        <div class="review-card" onclick="speak('I like red! What color is this?')">
+            <h3>🌈 U4 颜色</h3>
+            <p>"I like red! What color is this?"</p>
+        </div>
+        <div class="review-card" onclick="speak('One two three four five!')">
+            <h3>🔢 U5 数字</h3>
+            <p>"One, two, three, four, five!"</p>
+        </div>
+        <div class="review-card" onclick="speak('I have a cat. Do you like cats?')">
+            <h3>🐱 U6 动物</h3>
+            <p>"I have a cat! Do you like cats?"</p>
+        </div>
+        <div class="review-card" onclick="speak('I love my mom and dad!')">
+            <h3>👨‍👩‍👧 U7 家庭</h3>
+            <p>"I love my mom and dad!"</p>
+        </div>
+        <div class="review-card" onclick="speak('I can jump! Can you jump?')">
+            <h3>🏃 U8 动作</h3>
+            <p>"I can jump! Can you jump?"</p>
+        </div>
+        <div class="review-card" onclick="speak('Touch your head! This is my nose.')">
+            <h3>👃 U9 身体</h3>
+            <p>"Touch your head! This is my nose."</p>
+        </div>
+        <div class="review-card" onclick="speak('I like apples! Do you like bananas?')">
+            <h3>🍎 U10 食物</h3>
+            <p>"I like apples! Do you like bananas?"</p>
+        </div>
+        <div class="review-card" onclick="speak('I have a ball! Can I play with it?')">
+            <h3>🧸 U11 玩具</h3>
+            <p>"I have a ball! Can I play with it?"</p>
+        </div>
+        <div class="review-card" onclick="speak('Welcome to our show! I can sing and dance!')">
+            <h3>🎭 U12 演出</h3>
+            <p>"Welcome! I can sing and dance!"</p>
+        </div>
+    </div>
+
+    <h2>💬 Mini Show 演出句型</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('Welcome to our show!')">🔊</button>
+                <div><div>Welcome to our show!</div><div class="bubble-cn">欢迎来到我们的表演！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Thank you! We are very happy!')">🔊</button>
+                <div><div>Thank you! We are very happy!</div><div class="bubble-cn">谢谢！我们非常高兴！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you sing?')">🔊</button>
+                <div><div>Can you sing?</div><div class="bubble-cn">你会唱歌吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I can sing ABC!')">🔊</button>
+                <div><div>Yes! I can sing ABC!</div><div class="bubble-cn">会！我会唱ABC！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you count to ten?')">🔊</button>
+                <div><div>Can you count to ten?</div><div class="bubble-cn">你会数到十吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! One, two, three, four, five, six, seven, eight, nine, ten!')">🔊</button>
+                <div><div>Yes! One, two, three... ten!</div><div class="bubble-cn">会！一、二、三……十！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('You are wonderful! You are a star!')">🔊</button>
+                <div><div>You are wonderful! You are a star!</div><div class="bubble-cn">你太棒了！你是一颗星星！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Thank you so much! Let us celebrate!')">🔊</button>
+                <div><div>Thank you so much! Let's celebrate!</div><div class="bubble-cn">非常感谢！让我们一起庆祝吧！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整演出对话 Mini Show Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#3498db;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整演出
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Welcome to our show! My name is Tom.</p>
+            <p>👧 <strong>Amy:</strong> My name is Amy. We are happy to see you!</p>
+            <p>🧒 <strong>Tom:</strong> I can count! One, two, three, four, five!</p>
+            <p>👧 <strong>Amy:</strong> I can sing! A, B, C, D, E, F, G!</p>
+            <p>👥 <strong>All:</strong> Thank you for coming! Let's celebrate!</p>
+            <p>👥 <strong>All:</strong> Goodbye! See you next time!</p>
+        </div>
+    </div>
+
+    <h2>🌟 我的成就 My Achievements</h2>
+    <div style="text-align:center;margin:20px 0;padding:20px;background:#fff9c4;border-radius:10px;border:1px solid #f9ca24;">
+        <p style="font-size:16px;margin-bottom:10px;">🏆 恭喜完成 UpGrade English U1-U12！</p>
+        <div>
+            <span class="star-badge">⭐ 问候语</span>
+            <span class="star-badge">⭐ 课堂指令</span>
+            <span class="star-badge">⭐ 情绪表达</span>
+            <span class="star-badge">⭐ 颜色</span>
+            <span class="star-badge">⭐ 数字</span>
+            <span class="star-badge">⭐ 动物</span>
+            <span class="star-badge">⭐ 家庭</span>
+            <span class="star-badge">⭐ 动作</span>
+            <span class="star-badge">⭐ 身体</span>
+            <span class="star-badge">⭐ 食物</span>
+            <span class="star-badge">⭐ 玩具</span>
+            <span class="star-badge">⭐ 演出</span>
+        </div>
+        <p style="margin-top:15px;color:#888;font-size:13px;">You are a superstar! 你是超级明星！🌟</p>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('minishow')">
+            <span class="game-emoji">🎭</span>
+            <strong>Mini Show 迷你演出</strong><br>
+            <small>展示本学期学到的所有内容</small><br>
+            <small style="color:#3498db;">开始演出 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('race')">
+            <span class="game-emoji">🏁</span>
+            <strong>知识大闯关 Knowledge Race</strong><br>
+            <small>回答 U1-U11 的问题闯关</small><br>
+            <small style="color:#3498db;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('award')">
+            <span class="game-emoji">🏆</span>
+            <strong>颁奖典礼 Award Ceremony</strong><br>
+            <small>给表现好的同学颁发奖状</small><br>
+            <small style="color:#3498db;">颁奖 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('party')">
+            <span class="game-emoji">🎉</span>
+            <strong>庆祝派对 Celebration Party</strong><br>
+            <small>用英语进行庆祝活动</small><br>
+            <small style="color:#3498db;">开始派对 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Welcome to our show! My name is Tom.", delay: 0 },
+        { text: "My name is Amy. We are happy to see you!", delay: 3000 },
+        { text: "I can count! One, two, three, four, five!", delay: 6500 },
+        { text: "I can sing! A, B, C, D, E, F, G!", delay: 10000 },
+        { text: "Thank you for coming! Let's celebrate!", delay: 14000 },
+        { text: "Goodbye! See you next time!", delay: 17500 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        minishow: '🎭 Mini Show 演出：每个小朋友上台展示自己最擅长的内容：说问候语、数数字、说颜色、说动物……用英语展示你学到的一切！',
+        race: '🏁 知识大闯关：老师提问，学生抢答。"What color is this?" / "How many?" / "What animal is this?" / "How are you?" 答对得分！',
+        award: '🏆 颁奖典礼：为每位小朋友准备一张英文奖状。"You are a Greeting Star!" / "You are a Number Star!" / "You are a Super Student!"',
+        party: '🎉 庆祝派对：一起说 "Let\'s celebrate!" 唱学过的歌曲，说学过的句子，拍手庆祝完成课程！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U4 Feelings & Emotions - 情绪感受</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #e74c3c; text-align: center; margin-bottom: 10px; }
+        h2 { color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #e74c3c; }
+
+        /* Vocabulary */
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .vocab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            background: #fff5f5;
+            border-radius: 12px;
+            border: 2px solid #fdd;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            text-align: center;
+        }
+        .vocab-item:hover { box-shadow: 0 4px 12px rgba(231,76,60,0.2); transform: translateY(-2px); border-color: #e74c3c; }
+        .vocab-emoji { font-size: 38px; margin-bottom: 6px; }
+        .vocab-text strong { display: block; font-size: 16px; color: #c0392b; }
+        .vocab-text span { font-size: 12px; color: #888; }
+        .speak-btn {
+            position: absolute; top: 6px; right: 8px;
+            background: #e74c3c; color: white;
+            border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 11px;
+            cursor: pointer; opacity: 0.7;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .speak-btn:hover { opacity: 1; }
+
+        /* Dialog */
+        .dialog-box {
+            background: #fff5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #fdd;
+        }
+        .dialog-pair {
+            display: flex; flex-direction: column; gap: 8px;
+            margin: 14px 0; padding-bottom: 14px;
+            border-bottom: 1px dashed #fdd;
+        }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 15px; border-radius: 20px;
+            max-width: 90%; font-size: 15px;
+        }
+        .bubble.ask { background: #3498db; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #e74c3c; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak {
+            background: rgba(255,255,255,0.25); border: none; border-radius: 50%;
+            width: 24px; height: 24px; font-size: 12px;
+            cursor: pointer; color: white; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+
+        /* Emotion Cards for Interactive Practice */
+        .emotion-row {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            justify-content: center; margin: 20px 0;
+        }
+        .emotion-card {
+            background: #fff5f5; border: 2px solid #fdd;
+            border-radius: 12px; padding: 12px 18px;
+            cursor: pointer; text-align: center;
+            transition: all 0.2s; min-width: 100px;
+        }
+        .emotion-card:hover { background: #e74c3c; color: white; border-color: #e74c3c; transform: scale(1.05); }
+        .emotion-card .em { font-size: 32px; display: block; margin-bottom: 4px; }
+
+        /* Games */
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .game-card {
+            background: #fff5f5; padding: 15px; border-radius: 10px;
+            border: 1px solid #fdd; text-align: center; cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(231,76,60,0.2); }
+        .game-emoji { font-size: 32px; }
+
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>😊 U4 Feelings &amp; Emotions</h1>
+    <p style="text-align:center;color:#888;">情绪感受 · Happy · Sad · Angry · Scared</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <!-- VOCABULARY -->
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('happy')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😊</span>
+            <div class="vocab-text"><strong>happy</strong><span>开心的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('sad')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😢</span>
+            <div class="vocab-text"><strong>sad</strong><span>难过的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('angry')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😠</span>
+            <div class="vocab-text"><strong>angry</strong><span>生气的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('scared')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😨</span>
+            <div class="vocab-text"><strong>scared</strong><span>害怕的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('tired')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😴</span>
+            <div class="vocab-text"><strong>tired</strong><span>累的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('surprised')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">😲</span>
+            <div class="vocab-text"><strong>surprised</strong><span>惊讶的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('sick')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🤒</span>
+            <div class="vocab-text"><strong>sick</strong><span>生病的</span></div>
+        </div>
+        <div class="vocab-item" onclick="speak('excited')">
+            <button class="speak-btn">🔊</button>
+            <span class="vocab-emoji">🤩</span>
+            <div class="vocab-text"><strong>excited</strong><span>兴奋的</span></div>
+        </div>
+    </div>
+
+    <!-- EMOTION PRACTICE TAP -->
+    <h2>👆 点击表达情绪 Tap Your Feeling</h2>
+    <div class="emotion-row">
+        <div class="emotion-card" onclick="speak('I am happy!'); this.style.background='#f39c12';">
+            <span class="em">😊</span><strong>I am happy!</strong><br><small>我很开心！</small>
+        </div>
+        <div class="emotion-card" onclick="speak('I am sad.'); this.style.background='#3498db';">
+            <span class="em">😢</span><strong>I am sad.</strong><br><small>我很难过。</small>
+        </div>
+        <div class="emotion-card" onclick="speak('I am angry!'); this.style.background='#e74c3c';">
+            <span class="em">😠</span><strong>I am angry!</strong><br><small>我很生气！</small>
+        </div>
+        <div class="emotion-card" onclick="speak('I am scared.'); this.style.background='#9b59b6';">
+            <span class="em">😨</span><strong>I am scared.</strong><br><small>我很害怕。</small>
+        </div>
+        <div class="emotion-card" onclick="speak('I am tired.'); this.style.background='#95a5a6';">
+            <span class="em">😴</span><strong>I am tired.</strong><br><small>我很累。</small>
+        </div>
+        <div class="emotion-card" onclick="speak('I am excited!'); this.style.background='#1abc9c';">
+            <span class="em">🤩</span><strong>I am excited!</strong><br><small>我很兴奋！</small>
+        </div>
+    </div>
+
+    <!-- SENTENCE PATTERNS with Q&A (全1/2人称) -->
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How are you?')">🔊</button>
+                <div><div>How are you?</div><div class="bubble-cn">你好吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I am happy! Thank you!')">🔊</button>
+                <div><div>I am happy! Thank you!</div><div class="bubble-cn">我很开心！谢谢你！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Are you okay?')">🔊</button>
+                <div><div>Are you okay?</div><div class="bubble-cn">你还好吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I am fine. Thank you!')">🔊</button>
+                <div><div>Yes, I am fine. Thank you!</div><div class="bubble-cn">是的，我很好。谢谢你！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Are you happy today?')">🔊</button>
+                <div><div>Are you happy today?</div><div class="bubble-cn">你今天开心吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I am very happy!')">🔊</button>
+                <div><div>Yes, I am very happy!</div><div class="bubble-cn">是的，我非常开心！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Are you sad?')">🔊</button>
+                <div><div>Are you sad?</div><div class="bubble-cn">你难过吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('No, I am not sad. I am happy!')">🔊</button>
+                <div><div>No, I am not sad. I am happy!</div><div class="bubble-cn">不，我不难过。我很开心！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How do you feel?')">🔊</button>
+                <div><div>How do you feel?</div><div class="bubble-cn">你感觉怎么样？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I feel excited!')">🔊</button>
+                <div><div>I feel excited!</div><div class="bubble-cn">我感觉很兴奋！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Are you scared?')">🔊</button>
+                <div><div>Are you scared?</div><div class="bubble-cn">你害怕吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('No, I am not scared. I am brave!')">🔊</button>
+                <div><div>No, I am not scared. I am brave!</div><div class="bubble-cn">不，我不害怕。我很勇敢！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('I love you!')">🔊</button>
+                <div><div>I love you! ❤️</div><div class="bubble-cn">我爱你！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I love you too!')">🔊</button>
+                <div><div>I love you too! ❤️</div><div class="bubble-cn">我也爱你！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FULL DIALOG -->
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <p style="text-align:center;color:#888;font-size:13px;">👇 点击播放完整情绪对话</p>
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#e74c3c;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Hi Amy! How are you today?</p>
+            <p>👧 <strong>Amy:</strong> I am very happy! How about you?</p>
+            <p>🧒 <strong>Tom:</strong> I am a little tired. Are you okay?</p>
+            <p>👧 <strong>Amy:</strong> Yes, I am fine! Are you scared?</p>
+            <p>🧒 <strong>Tom:</strong> No, I am not scared. I am brave!</p>
+            <p>👧 <strong>Amy:</strong> Great! I love you, Tom!</p>
+            <p>🧒 <strong>Tom:</strong> I love you too, Amy!</p>
+        </div>
+    </div>
+
+    <!-- GAMES -->
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('guess')">
+            <div class="game-emoji">🎭</div>
+            <strong>表情猜猜猜 Emotion Guess</strong><br>
+            <small>做出表情，朋友用英语猜："Are you happy?"</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('face')">
+            <div class="game-emoji">🎨</div>
+            <strong>情绪脸谱 Emotion Face</strong><br>
+            <small>画出你现在的心情，说 "I am ___"</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('song')">
+            <div class="game-emoji">🎵</div>
+            <strong>情绪歌 Emotion Song</strong><br>
+            <small>唱 "If you're happy and you know it, clap your hands!"</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('dice')">
+            <div class="game-emoji">🎲</div>
+            <strong>情绪骰子 Emotion Dice</strong><br>
+            <small>掷出情绪，说出句子 "I am ___!"</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = rate || 0.85;
+    utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+
+function playFullDialog() {
+    const lines = [
+        { text: "Hi Amy! How are you today?", delay: 0 },
+        { text: "I am very happy! How about you?", delay: 2500 },
+        { text: "I am a little tired. Are you okay?", delay: 5500 },
+        { text: "Yes, I am fine! Are you scared?", delay: 8500 },
+        { text: "No, I am not scared. I am brave!", delay: 11500 },
+        { text: "Great! I love you, Tom!", delay: 14500 },
+        { text: "I love you too, Amy!", delay: 17000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+
+function playGame(type) {
+    const msgs = {
+        guess: '🎭 表情猜猜猜：一个同学做表情，另一个用英语问 "Are you happy/sad/angry?" — 对方回答 "Yes, I am!" 或 "No, I am not!"',
+        face: '🎨 情绪脸谱：在纸上画出你现在的心情，然后说 "I am ___. Are you ___?" 和朋友互相问答！',
+        song: '🎵 情绪歌：一起唱 "If you\'re happy and you know it, clap your hands! Clap clap!" 用不同情绪替换歌词！',
+        dice: '🎲 情绪骰子：掷骰子，根据点数说出情绪句子。1=happy, 2=sad, 3=angry, 4=scared, 5=tired, 6=excited！'
+    };
+    alert(msgs[type]);
+}
+
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

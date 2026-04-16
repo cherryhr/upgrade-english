@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U5 Colors - 颜色认知</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #e74c3c; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #fef9f9; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #fadbd8; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(231,76,60,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #c0392b; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #e74c3c; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #fef9f9; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #fadbd8; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #fadbd8; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #e74c3c; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #fef9f9; padding: 15px; border-radius: 10px; border: 1px solid #fadbd8; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(231,76,60,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+        .color-swatch { width: 20px; height: 20px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; border: 1px solid rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🌈 U5 Colors</h1>
+    <p style="text-align:center;color:#888;">颜色认知 · Red · Blue · Green · Yellow</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('red')">
+            <span class="vocab-emoji">🔴</span>
+            <div class="vocab-text"><strong>red</strong><span>红色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('blue')">
+            <span class="vocab-emoji">🔵</span>
+            <div class="vocab-text"><strong>blue</strong><span>蓝色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('green')">
+            <span class="vocab-emoji">🟢</span>
+            <div class="vocab-text"><strong>green</strong><span>绿色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('yellow')">
+            <span class="vocab-emoji">🟡</span>
+            <div class="vocab-text"><strong>yellow</strong><span>黄色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('orange')">
+            <span class="vocab-emoji">🟠</span>
+            <div class="vocab-text"><strong>orange</strong><span>橙色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('purple')">
+            <span class="vocab-emoji">🟣</span>
+            <div class="vocab-text"><strong>purple</strong><span>紫色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('black')">
+            <span class="vocab-emoji">⚫</span>
+            <div class="vocab-text"><strong>black</strong><span>黑色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('white')">
+            <span class="vocab-emoji">⚪</span>
+            <div class="vocab-text"><strong>white</strong><span>白色</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What color is this?')">🔊</button>
+                <div><div>What color is this?</div><div class="bubble-cn">这是什么颜色？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('It is red!')">🔊</button>
+                <div><div>It is red!</div><div class="bubble-cn">它是红色的！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What color do you like?')">🔊</button>
+                <div><div>What color do you like?</div><div class="bubble-cn">你喜欢什么颜色？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I like blue and green!')">🔊</button>
+                <div><div>I like blue and green!</div><div class="bubble-cn">我喜欢蓝色和绿色！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you like yellow?')">🔊</button>
+                <div><div>Do you like yellow?</div><div class="bubble-cn">你喜欢黄色吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I like yellow! It is sunny!')">🔊</button>
+                <div><div>Yes, I like yellow! It is sunny!</div><div class="bubble-cn">是的，我喜欢黄色！它像阳光一样！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you point to the blue one?')">🔊</button>
+                <div><div>Can you point to the blue one?</div><div class="bubble-cn">你能指出蓝色那个吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! This is blue!')">🔊</button>
+                <div><div>Yes! This is blue!</div><div class="bubble-cn">好的！这个是蓝色！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What colors are in a rainbow?')">🔊</button>
+                <div><div>What colors are in a rainbow?</div><div class="bubble-cn">彩虹里有什么颜色？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Red, orange, yellow, green, blue, and purple!')">🔊</button>
+                <div><div>Red, orange, yellow, green, blue, and purple!</div><div class="bubble-cn">红、橙、黄、绿、蓝、紫！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#e74c3c;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> What color is this?</p>
+            <p>👧 <strong>Amy:</strong> It is red! I like red!</p>
+            <p>🧒 <strong>Tom:</strong> What color do you like, Amy?</p>
+            <p>👧 <strong>Amy:</strong> I like blue and yellow! What color do you like?</p>
+            <p>🧒 <strong>Tom:</strong> I like green! Can you see the rainbow?</p>
+            <p>👧 <strong>Amy:</strong> Yes! Red, orange, yellow, green, blue, and purple!</p>
+            <p>🧒 <strong>Tom:</strong> A rainbow has many colors! Beautiful!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('match')">
+            <span class="game-emoji">🎨</span>
+            <strong>颜色配对 Color Match</strong><br>
+            <small>找到相同颜色的物品配对，用英语说出颜色</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('run')">
+            <span class="game-emoji">🏃</span>
+            <strong>颜色跑 Color Run</strong><br>
+            <small>听到颜色，跑到对应颜色区域，用"I like ___!"回答</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('rainbow')">
+            <span class="game-emoji">🌈</span>
+            <strong>彩虹歌 Rainbow Song</strong><br>
+            <small>唱彩虹歌，一边唱一边指出对应颜色</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('spinner')">
+            <span class="game-emoji">🎲</span>
+            <strong>颜色转盘 Color Spinner</strong><br>
+            <small>转盘停在什么颜色，就说"I like ___!"</small><br>
+            <small style="color:#e74c3c;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "What color is this?", delay: 0 },
+        { text: "It is red! I like red!", delay: 2000 },
+        { text: "What color do you like, Amy?", delay: 4500 },
+        { text: "I like blue and yellow! What color do you like?", delay: 7000 },
+        { text: "I like green! Can you see the rainbow?", delay: 11000 },
+        { text: "Yes! Red, orange, yellow, green, blue, and purple!", delay: 14000 },
+        { text: "A rainbow has many colors! Beautiful!", delay: 18500 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        match: '🎨 颜色配对：每人拿一张颜色卡，找到颜色相同的搭档，说"I like ___! What color do you like?" "I like ___ too!"',
+        run: '🏃 颜色跑：教室四角各放一种颜色，老师说颜色，学生跑到对应区域，大声说"This is ___!"',
+        rainbow: '🌈 彩虹歌：Red and orange and yellow and green, blue and purple, colors are seen! 一边唱一边用蜡笔画彩虹！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

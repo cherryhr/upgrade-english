@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U9 Body Parts - 身体部位</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #2980b9; border-bottom: 2px solid #2980b9; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #2980b9; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #ebf5fb; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #aed6f1; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(41,128,185,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #1a5276; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #2980b9; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #ebf5fb; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #aed6f1; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #aed6f1; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #2980b9; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #ebf5fb; padding: 15px; border-radius: 10px; border: 1px solid #aed6f1; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(41,128,185,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>👤 U9 Body Parts</h1>
+    <p style="text-align:center;color:#888;">身体部位 · Head · Eyes · Nose · Hands</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('head')">
+            <span class="vocab-emoji">👤</span>
+            <div class="vocab-text"><strong>head</strong><span>头</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('eyes')">
+            <span class="vocab-emoji">👁️</span>
+            <div class="vocab-text"><strong>eyes</strong><span>眼睛</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('nose')">
+            <span class="vocab-emoji">👃</span>
+            <div class="vocab-text"><strong>nose</strong><span>鼻子</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('ears')">
+            <span class="vocab-emoji">👂</span>
+            <div class="vocab-text"><strong>ears</strong><span>耳朵</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('mouth')">
+            <span class="vocab-emoji">👄</span>
+            <div class="vocab-text"><strong>mouth</strong><span>嘴巴</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('hands')">
+            <span class="vocab-emoji">✋</span>
+            <div class="vocab-text"><strong>hands</strong><span>手</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('feet')">
+            <span class="vocab-emoji">🦶</span>
+            <div class="vocab-text"><strong>feet</strong><span>脚</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('arms')">
+            <span class="vocab-emoji">💪</span>
+            <div class="vocab-text"><strong>arms</strong><span>胳膊</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you touch your head?')">🔊</button>
+                <div><div>Can you touch your head?</div><div class="bubble-cn">你能摸摸你的头吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I touch my head!')">🔊</button>
+                <div><div>Yes! I touch my head!</div><div class="bubble-cn">好的！我摸了摸头！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How many eyes do you have?')">🔊</button>
+                <div><div>How many eyes do you have?</div><div class="bubble-cn">你有几只眼睛？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I have two eyes!')">🔊</button>
+                <div><div>I have two eyes!</div><div class="bubble-cn">我有两只眼睛！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you clap your hands?')">🔊</button>
+                <div><div>Can you clap your hands?</div><div class="bubble-cn">你能拍拍你的手吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I clap my hands! Clap clap clap!')">🔊</button>
+                <div><div>Yes! I clap my hands! Clap clap clap!</div><div class="bubble-cn">好的！我拍手了！拍拍拍！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you stamp your feet?')">🔊</button>
+                <div><div>Can you stamp your feet?</div><div class="bubble-cn">你能跺跺脚吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I stamp my feet! Stamp stamp stamp!')">🔊</button>
+                <div><div>Yes! I stamp my feet! Stamp stamp stamp!</div><div class="bubble-cn">好的！我跺脚了！跺跺跺！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you wave your arms?')">🔊</button>
+                <div><div>Can you wave your arms?</div><div class="bubble-cn">你能挥挥胳膊吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! I wave my arms! Hello!')">🔊</button>
+                <div><div>Yes! I wave my arms! Hello!</div><div class="bubble-cn">好的！我挥动胳膊！你好！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#2980b9;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Can you touch your nose?</p>
+            <p>👧 <strong>Amy:</strong> Yes! I touch my nose! How many ears do you have?</p>
+            <p>🧒 <strong>Tom:</strong> I have two ears! Can you clap your hands?</p>
+            <p>👧 <strong>Amy:</strong> Yes! I clap my hands! Clap clap clap!</p>
+            <p>🧒 <strong>Tom:</strong> Can you stamp your feet?</p>
+            <p>👧 <strong>Amy:</strong> Yes! Stamp stamp stamp! Now let's wave our arms together!</p>
+            <p>🧒 <strong>Tom:</strong> Yes! I wave my arms! Head, shoulders, knees and toes!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('song')">
+            <span class="game-emoji">🎵</span>
+            <strong>头肩膀歌 Head Shoulders</strong><br>
+            <small>唱《Head, Shoulders, Knees and Toes》边唱边摸身体部位</small><br>
+            <small style="color:#2980b9;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('simon')">
+            <span class="game-emoji">🎯</span>
+            <strong>身体Simon Says</strong><br>
+            <small>"Simon says touch your nose!" 听指令做动作并回答"Yes!"</small><br>
+            <small style="color:#2980b9;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('draw')">
+            <span class="game-emoji">🎨</span>
+            <strong>画身体 Draw Body</strong><br>
+            <small>画出身体各部位，并用英语标注，问同伴"What is this?"</small><br>
+            <small style="color:#2980b9;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('commands')">
+            <span class="game-emoji">🎭</span>
+            <strong>身体指令 Body Commands</strong><br>
+            <small>快速做出身体动作，并用英语说"I can touch my ___!"</small><br>
+            <small style="color:#2980b9;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Can you touch your nose?", delay: 0 },
+        { text: "Yes! I touch my nose! How many ears do you have?", delay: 2500 },
+        { text: "I have two ears! Can you clap your hands?", delay: 7000 },
+        { text: "Yes! I clap my hands! Clap clap clap!", delay: 10500 },
+        { text: "Can you stamp your feet?", delay: 14500 },
+        { text: "Yes! Stamp stamp stamp! Now let's wave our arms together!", delay: 17000 },
+        { text: "Yes! I wave my arms! Head, shoulders, knees and toes!", delay: 22000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        song: '🎵 Head, Shoulders, Knees and Toes: 跟着节奏唱，每唱一个身体部位就摸一下！Head, shoulders, knees and toes, knees and toes...',
+        simon: '🎯 身体Simon Says: "Simon says touch your nose!" → 大家摸鼻子说"Yes, I touch my nose!" 只说"Touch your nose!"不加Simon says就不能做！',
+        draw: '🎨 画身体：在纸上画人，给每个部位写上英文，然后指着问同伴"What is this?" 同伴回答"This is your head/eyes/nose..."',
+        commands: '🎭 身体指令比赛：老师发指令"Touch your ears!"，最快完成并说"I touch my ears!"的人得一分！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

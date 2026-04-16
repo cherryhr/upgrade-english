@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U8 My Family - 我的家人</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #e91e8c; border-bottom: 2px solid #e91e8c; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #e91e8c; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #fce4ec; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #f48fb1; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(233,30,140,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #c2185b; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #e91e8c; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #fce4ec; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #f48fb1; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #f48fb1; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #e91e8c; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #fce4ec; padding: 15px; border-radius: 10px; border: 1px solid #f48fb1; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(233,30,140,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>👨‍👩‍👧 U8 My Family</h1>
+    <p style="text-align:center;color:#888;">我的家人 · Mom · Dad · Grandpa · Grandma</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('dad, father')">
+            <span class="vocab-emoji">👨</span>
+            <div class="vocab-text"><strong>dad / father</strong><span>爸爸</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('mom, mother')">
+            <span class="vocab-emoji">👩</span>
+            <div class="vocab-text"><strong>mom / mother</strong><span>妈妈</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('grandpa')">
+            <span class="vocab-emoji">👴</span>
+            <div class="vocab-text"><strong>grandpa</strong><span>爷爷/外公</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('grandma')">
+            <span class="vocab-emoji">👵</span>
+            <div class="vocab-text"><strong>grandma</strong><span>奶奶/外婆</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('brother')">
+            <span class="vocab-emoji">👦</span>
+            <div class="vocab-text"><strong>brother</strong><span>哥哥/弟弟</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('sister')">
+            <span class="vocab-emoji">👧</span>
+            <div class="vocab-text"><strong>sister</strong><span>姐姐/妹妹</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('baby')">
+            <span class="vocab-emoji">👶</span>
+            <div class="vocab-text"><strong>baby</strong><span>宝宝</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+        <div class="vocab-item" onclick="speak('family')">
+            <span class="vocab-emoji">👨‍👩‍👧</span>
+            <div class="vocab-text"><strong>family</strong><span>家人</span></div>
+            <button class="speak-btn">🔊</button>
+        </div>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Who is this in your photo?')">🔊</button>
+                <div><div>Who is this in your photo?</div><div class="bubble-cn">你照片里这是谁？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('This is my dad! I love my dad.')">🔊</button>
+                <div><div>This is my dad! I love my dad.</div><div class="bubble-cn">这是我爸爸！我爱我的爸爸。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you have a sister?')">🔊</button>
+                <div><div>Do you have a sister?</div><div class="bubble-cn">你有姐妹吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes, I have one sister! Her name is Lily.')">🔊</button>
+                <div><div>Yes, I have one sister! Her name is Lily.</div><div class="bubble-cn">是的，我有一个妹妹！她叫莉莉。</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Do you have a brother?')">🔊</button>
+                <div><div>Do you have a brother?</div><div class="bubble-cn">你有兄弟吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('No, I do not have a brother. I am the only child!')">🔊</button>
+                <div><div>No, I do not have a brother. I am the only child!</div><div class="bubble-cn">没有，我没有哥哥或弟弟。我是独生子！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How many people are in your family?')">🔊</button>
+                <div><div>How many people are in your family?</div><div class="bubble-cn">你家有几口人？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('There are four people in my family. Mom, dad, grandma, and me!')">🔊</button>
+                <div><div>There are four people in my family. Mom, dad, grandma, and me!</div><div class="bubble-cn">我家有四口人。妈妈、爸爸、奶奶和我！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble statement">
+                <button class="bubble-speak" onclick="speak('I love my family so much!')">🔊</button>
+                <div><div>I love my family so much!</div><div class="bubble-cn">我非常爱我的家人！</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Me too! My family is the best!')">🔊</button>
+                <div><div>Me too! My family is the best!</div><div class="bubble-cn">我也是！我的家人是最棒的！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#e91e8c;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> Who is this in your photo?</p>
+            <p>👧 <strong>Amy:</strong> This is my mom and my dad! I love them!</p>
+            <p>🧒 <strong>Tom:</strong> Do you have a sister?</p>
+            <p>👧 <strong>Amy:</strong> Yes! I have one sister. Her name is Lily. Do you have a brother?</p>
+            <p>🧒 <strong>Tom:</strong> No, I do not have a brother. How many people are in your family?</p>
+            <p>👧 <strong>Amy:</strong> There are five people. Mom, dad, grandma, my sister, and me!</p>
+            <p>🧒 <strong>Tom:</strong> I love my family so much!</p>
+            <p>👧 <strong>Amy:</strong> Me too! My family is the best!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('tree')">
+            <span class="game-emoji">🌳</span>
+            <strong>家庭树 Family Tree</strong><br>
+            <small>画出你的家庭树，用英语介绍每位家人</small><br>
+            <small style="color:#e91e8c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('role')">
+            <span class="game-emoji">🤝</span>
+            <strong>角色扮演 Role Play</strong><br>
+            <small>扮演家庭成员互相介绍："This is my mom!"</small><br>
+            <small style="color:#e91e8c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('photo')">
+            <span class="game-emoji">📸</span>
+            <strong>照片配对 Photo Match</strong><br>
+            <small>将家人照片与英文单词配对，用"This is my ___"介绍</small><br>
+            <small style="color:#e91e8c;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('song')">
+            <span class="game-emoji">🎵</span>
+            <strong>家庭歌 Family Song</strong><br>
+            <small>唱 Finger Family 歌曲，每根手指代表一位家人</small><br>
+            <small style="color:#e91e8c;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function playFullDialog() {
+    const lines = [
+        { text: "Who is this in your photo?", delay: 0 },
+        { text: "This is my mom and my dad! I love them!", delay: 2500 },
+        { text: "Do you have a sister?", delay: 6000 },
+        { text: "Yes! I have one sister. Her name is Lily. Do you have a brother?", delay: 8500 },
+        { text: "No, I do not have a brother. How many people are in your family?", delay: 14000 },
+        { text: "There are five people. Mom, dad, grandma, my sister, and me!", delay: 19000 },
+        { text: "I love my family so much!", delay: 25000 },
+        { text: "Me too! My family is the best!", delay: 28000 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        tree: '🌳 家庭树：在纸上画家庭树，然后用英语介绍："This is my dad. This is my mom. This is my sister."',
+        role: '🤝 角色扮演：每人选一个家庭角色，互相介绍。问："Who are you?" 答："I am the dad/mom/sister..."',
+        photo: '📸 照片配对：把家人的照片（或画）与英文单词卡片配对，说"This is my ___!"',
+        song: '🎵 Finger Family 歌：大拇指=Daddy, 食指=Mommy, 中指=Brother, 无名指=Sister, 小指=Baby. 每唱一个就举起对应的手指！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U6 Numbers 1-10 - 数字1-10</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f5f5f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        h2 { color: #16a085; border-bottom: 2px solid #16a085; padding-bottom: 5px; margin-top: 30px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #7f8c8d; text-decoration: none; }
+        .back-link:hover { color: #16a085; }
+        .vocabulary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+        .vocab-item { display: flex; align-items: center; padding: 12px; background: #e8f8f5; border-radius: 8px; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid #a9dfbf; }
+        .vocab-item:hover { box-shadow: 0 3px 8px rgba(22,160,133,0.2); transform: translateY(-1px); }
+        .vocab-emoji { font-size: 26px; margin-right: 10px; }
+        .vocab-text strong { display: block; font-size: 15px; color: #1a8374; }
+        .vocab-text span { font-size: 12px; color: #777; }
+        .speak-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: #16a085; color: white; border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 11px; cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+        .speak-btn:hover { opacity: 1; }
+        .dialog-box { background: #e8f8f5; border-radius: 10px; padding: 20px; margin: 20px 0; border: 1px solid #a9dfbf; }
+        .dialog-pair { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #a9dfbf; }
+        .dialog-pair:last-child { border-bottom: none; }
+        .bubble { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 20px; max-width: 90%; font-size: 15px; }
+        .bubble.ask { background: #16a085; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.answer { background: #27ae60; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bubble.statement { background: #8e44ad; color: white; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble-cn { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 2px; }
+        .bubble-speak { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .bubble-speak:hover { background: rgba(255,255,255,0.4); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .game-card { background: #e8f8f5; padding: 15px; border-radius: 10px; border: 1px solid #a9dfbf; cursor: pointer; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 12px rgba(22,160,133,0.2); }
+        .game-emoji { font-size: 28px; margin-right: 8px; }
+        .audio-hint { text-align: center; color: #999; font-size: 13px; margin-bottom: 10px; }
+        .number-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .num-btn { width: 50px; height: 50px; border-radius: 50%; background: #16a085; color: white; border: none; font-size: 20px; font-weight: bold; cursor: pointer; transition: transform 0.15s; }
+        .num-btn:hover { transform: scale(1.15); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔢 U6 Numbers 1-10</h1>
+    <p style="text-align:center;color:#888;">数字1-10 · Count 1 to 10 · How many?</p>
+    <a href="index.html" class="back-link">← 返回首页</a>
+    <p class="audio-hint">🔊 点击任意单词或句子可播放发音</p>
+
+    <h2>📚 核心词汇 Core Vocabulary</h2>
+    <div class="vocabulary-grid">
+        <div class="vocab-item" onclick="speak('one')"><span class="vocab-emoji">1️⃣</span><div class="vocab-text"><strong>one</strong><span>一</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('two')"><span class="vocab-emoji">2️⃣</span><div class="vocab-text"><strong>two</strong><span>二</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('three')"><span class="vocab-emoji">3️⃣</span><div class="vocab-text"><strong>three</strong><span>三</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('four')"><span class="vocab-emoji">4️⃣</span><div class="vocab-text"><strong>four</strong><span>四</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('five')"><span class="vocab-emoji">5️⃣</span><div class="vocab-text"><strong>five</strong><span>五</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('six')"><span class="vocab-emoji">6️⃣</span><div class="vocab-text"><strong>six</strong><span>六</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('seven')"><span class="vocab-emoji">7️⃣</span><div class="vocab-text"><strong>seven</strong><span>七</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('eight')"><span class="vocab-emoji">8️⃣</span><div class="vocab-text"><strong>eight</strong><span>八</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('nine')"><span class="vocab-emoji">9️⃣</span><div class="vocab-text"><strong>nine</strong><span>九</span></div><button class="speak-btn">🔊</button></div>
+        <div class="vocab-item" onclick="speak('ten')"><span class="vocab-emoji">🔟</span><div class="vocab-text"><strong>ten</strong><span>十</span></div><button class="speak-btn">🔊</button></div>
+    </div>
+
+    <div class="number-row">
+        <button class="num-btn" onclick="speak('one')">1</button>
+        <button class="num-btn" onclick="speak('two')">2</button>
+        <button class="num-btn" onclick="speak('three')">3</button>
+        <button class="num-btn" onclick="speak('four')">4</button>
+        <button class="num-btn" onclick="speak('five')">5</button>
+        <button class="num-btn" onclick="speak('six')">6</button>
+        <button class="num-btn" onclick="speak('seven')">7</button>
+        <button class="num-btn" onclick="speak('eight')">8</button>
+        <button class="num-btn" onclick="speak('nine')">9</button>
+        <button class="num-btn" onclick="speak('ten')">10</button>
+    </div>
+
+    <h2>💬 核心句型 Sentence Patterns</h2>
+    <div class="dialog-box">
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How many apples do you have?')">🔊</button>
+                <div><div>How many apples do you have?</div><div class="bubble-cn">你有几个苹果？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I have five apples!')">🔊</button>
+                <div><div>I have five apples!</div><div class="bubble-cn">我有五个苹果！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How old are you?')">🔊</button>
+                <div><div>How old are you?</div><div class="bubble-cn">你几岁了？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I am six years old!')">🔊</button>
+                <div><div>I am six years old!</div><div class="bubble-cn">我六岁了！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('Can you count to ten?')">🔊</button>
+                <div><div>Can you count to ten?</div><div class="bubble-cn">你能数到十吗？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Yes! One, two, three, four, five, six, seven, eight, nine, ten!')">🔊</button>
+                <div><div>Yes! One, two, three, four, five, six, seven, eight, nine, ten!</div><div class="bubble-cn">能！一、二、三、四、五、六、七、八、九、十！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('How many fingers do you have?')">🔊</button>
+                <div><div>How many fingers do you have?</div><div class="bubble-cn">你有几根手指？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('I have ten fingers!')">🔊</button>
+                <div><div>I have ten fingers!</div><div class="bubble-cn">我有十根手指！</div></div>
+            </div>
+        </div>
+
+        <div class="dialog-pair">
+            <div class="bubble ask">
+                <button class="bubble-speak" onclick="speak('What number comes after seven?')">🔊</button>
+                <div><div>What number comes after seven?</div><div class="bubble-cn">七的下一个数字是什么？</div></div>
+            </div>
+            <div class="bubble answer">
+                <button class="bubble-speak" onclick="speak('Eight! Seven, eight, nine, ten!')">🔊</button>
+                <div><div>Eight! Seven, eight, nine, ten!</div><div class="bubble-cn">八！七、八、九、十！</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>🗣️ 完整对话练习 Full Dialog</h2>
+    <div class="dialog-box">
+        <div style="text-align:center;margin:15px 0;">
+            <button onclick="playFullDialog()" style="background:#16a085;color:white;border:none;padding:12px 30px;border-radius:25px;font-size:16px;cursor:pointer;">
+                🔊 播放完整对话
+            </button>
+        </div>
+        <div style="background:#f8f8f8;padding:15px;border-radius:8px;font-size:14px;line-height:2.2;">
+            <p>🧒 <strong>Tom:</strong> How old are you?</p>
+            <p>👧 <strong>Amy:</strong> I am six years old! How old are you?</p>
+            <p>🧒 <strong>Tom:</strong> I am seven years old! Can you count to ten?</p>
+            <p>👧 <strong>Amy:</strong> Yes! One, two, three, four, five, six, seven, eight, nine, ten!</p>
+            <p>🧒 <strong>Tom:</strong> How many apples do you have?</p>
+            <p>👧 <strong>Amy:</strong> I have three apples! How many do you have?</p>
+            <p>🧒 <strong>Tom:</strong> I have five! Together we have eight apples!</p>
+        </div>
+    </div>
+
+    <h2>🎮 互动游戏 Interactive Games</h2>
+    <div class="games-grid">
+        <div class="game-card" onclick="playGame('chain')">
+            <span class="game-emoji">🔢</span>
+            <strong>数字接龙 Number Chain</strong><br>
+            <small>一人说"I have one apple!"，下一人接"I have two apples!"</small><br>
+            <small style="color:#16a085;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('dice')">
+            <span class="game-emoji">🎲</span>
+            <strong>掷骰子 Dice Roll</strong><br>
+            <small>掷骰子，说出数字并造句："I have ___ !"</small><br>
+            <small style="color:#16a085;">开始游戏 →</small>
+        </div>
+        <div class="game-card" onclick="countSong()">
+            <span class="game-emoji">🎵</span>
+            <strong>数字歌 Number Song</strong><br>
+            <small>跟着数字歌一起数：One, two, three...</small><br>
+            <small style="color:#16a085;">播放数字 →</small>
+        </div>
+        <div class="game-card" onclick="playGame('basketball')">
+            <span class="game-emoji">🏀</span>
+            <strong>数字投篮 Number Shot</strong><br>
+            <small>投中多少个球就说几，用英语报数！</small><br>
+            <small style="color:#16a085;">开始游戏 →</small>
+        </div>
+    </div>
+</div>
+
+<script>
+function speak(text, rate) {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音功能'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US'; utter.rate = rate || 0.85; utter.pitch = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Google US English'));
+    if (preferred) utter.voice = preferred;
+    window.speechSynthesis.speak(utter);
+}
+function countSong() {
+    const nums = ['one','two','three','four','five','six','seven','eight','nine','ten'];
+    nums.forEach((n, i) => setTimeout(() => speak(n), i * 900));
+}
+function playFullDialog() {
+    const lines = [
+        { text: "How old are you?", delay: 0 },
+        { text: "I am six years old! How old are you?", delay: 2000 },
+        { text: "I am seven years old! Can you count to ten?", delay: 5500 },
+        { text: "Yes! One, two, three, four, five, six, seven, eight, nine, ten!", delay: 9000 },
+        { text: "How many apples do you have?", delay: 15000 },
+        { text: "I have three apples! How many do you have?", delay: 17500 },
+        { text: "I have five! Together we have eight apples!", delay: 21500 },
+    ];
+    lines.forEach(line => setTimeout(() => speak(line.text), line.delay));
+}
+function playGame(type) {
+    const msgs = {
+        chain: '🔢 数字接龙：围成一圈，每人说"I have ___ !"，数字从1增加到10，超过10重新从1开始！',
+        dice: '🎲 掷骰子：掷出数字，用英语大声说出来，然后造句："I have ___ books!"',
+        basketball: '🏀 数字投篮：每投一个球，用英语说当前总数："One! Two! Three!" 全班一起数！',
+    };
+    if (msgs[type]) alert(msgs[type]);
+}
+window.addEventListener('load', () => window.speechSynthesis.getVoices());
+</script>
+</body>
+</html>

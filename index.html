@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpGrade English - 幼儿英语课程</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px;
+        }
+        .container {
+            max-width: 900px; margin: 0 auto;
+        }
+        .header {
+            text-align: center; color: white; padding: 40px 20px 30px;
+        }
+        .header h1 {
+            font-size: 2.8em; font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2); margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.1em; opacity: 0.9; margin-bottom: 5px;
+        }
+        .badge {
+            display: inline-block; background: rgba(255,255,255,0.2);
+            padding: 5px 16px; border-radius: 20px; font-size: 13px;
+            margin-top: 10px; color: white;
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px; margin-top: 20px;
+        }
+        .unit-card {
+            background: white; border-radius: 14px;
+            padding: 20px 16px; text-align: center;
+            text-decoration: none; color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.25s;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .unit-emoji {
+            font-size: 40px; margin-bottom: 10px;
+        }
+        .unit-number {
+            font-size: 11px; font-weight: 700; letter-spacing: 1px;
+            color: #999; text-transform: uppercase; margin-bottom: 4px;
+        }
+        .unit-title {
+            font-size: 14px; font-weight: 700; color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        .unit-cn {
+            font-size: 12px; color: #888;
+        }
+        .unit-tag {
+            display: inline-block; margin-top: 8px;
+            background: #e8f4f8; color: #3498db;
+            padding: 2px 10px; border-radius: 20px;
+            font-size: 11px;
+        }
+
+        /* Color themes per unit */
+        .u1 { border-top: 4px solid #3498db; }
+        .u2 { border-top: 4px solid #2ecc71; }
+        .u3 { border-top: 4px solid #e74c3c; }
+        .u4 { border-top: 4px solid #9b59b6; }
+        .u5 { border-top: 4px solid #f39c12; }
+        .u6 { border-top: 4px solid #1abc9c; }
+        .u7 { border-top: 4px solid #e67e22; }
+        .u8 { border-top: 4px solid #34495e; }
+        .u9 { border-top: 4px solid #e91e63; }
+        .u10 { border-top: 4px solid #ff5722; }
+        .u11 { border-top: 4px solid #795548; }
+        .u12 { border-top: 4px solid #607d8b; }
+
+        .footer {
+            text-align: center; color: rgba(255,255,255,0.7);
+            font-size: 13px; padding: 30px 0 20px;
+        }
+
+        .tips-box {
+            background: rgba(255,255,255,0.15); border-radius: 12px;
+            padding: 16px 20px; margin: 20px 0; color: white;
+        }
+        .tips-box h3 { font-size: 14px; margin-bottom: 8px; }
+        .tips-box p { font-size: 12px; opacity: 0.9; line-height: 1.8; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div style="font-size:60px;margin-bottom:15px;">🎓</div>
+        <h1>UpGrade English</h1>
+        <p>幼儿英语互动课程 · 全程TTS语音朗读</p>
+        <span class="badge">✨ 12个单元 · 点击播放发音 · 适合3-6岁</span>
+    </div>
+
+    <div class="tips-box">
+        <h3>💡 使用说明</h3>
+        <p>
+            🔊 每个页面所有单词和句子均可点击播放英文发音<br>
+            💬 所有句型采用第一/第二人称对话形式，贴近真实交流<br>
+            🎮 每单元附有互动游戏说明，可用于课堂活动
+        </p>
+    </div>
+
+    <div class="units-grid">
+        <a href="unit-u1.html" class="unit-card u1">
+            <div class="unit-emoji">👋</div>
+            <div class="unit-number">Unit 1</div>
+            <div class="unit-title">Greetings</div>
+            <div class="unit-cn">问候与告别</div>
+            <span class="unit-tag">Hello · Goodbye</span>
+        </a>
+
+        <a href="unit-u2.html" class="unit-card u2">
+            <div class="unit-emoji">📖</div>
+            <div class="unit-number">Unit 2</div>
+            <div class="unit-title">Classroom</div>
+            <div class="unit-cn">课堂指令</div>
+            <span class="unit-tag">Stand up · Sit down</span>
+        </a>
+
+        <a href="unit-u3.html" class="unit-card u3">
+            <div class="unit-emoji">😊</div>
+            <div class="unit-number">Unit 3</div>
+            <div class="unit-title">Feelings</div>
+            <div class="unit-cn">情绪表达</div>
+            <span class="unit-tag">Happy · Sad · Angry</span>
+        </a>
+
+        <a href="unit-u4.html" class="unit-card u4">
+            <div class="unit-emoji">🌈</div>
+            <div class="unit-number">Unit 4</div>
+            <div class="unit-title">Colors</div>
+            <div class="unit-cn">颜色</div>
+            <span class="unit-tag">Red · Blue · Green</span>
+        </a>
+
+        <a href="unit-u5.html" class="unit-card u5">
+            <div class="unit-emoji">🔢</div>
+            <div class="unit-number">Unit 5</div>
+            <div class="unit-title">Numbers</div>
+            <div class="unit-cn">数字</div>
+            <span class="unit-tag">1 · 2 · 3 · 4 · 5</span>
+        </a>
+
+        <a href="unit-u6.html" class="unit-card u6">
+            <div class="unit-emoji">🐱</div>
+            <div class="unit-number">Unit 6</div>
+            <div class="unit-title">Animals</div>
+            <div class="unit-cn">动物</div>
+            <span class="unit-tag">Cat · Dog · Bird</span>
+        </a>
+
+        <a href="unit-u7.html" class="unit-card u7">
+            <div class="unit-emoji">👨‍👩‍👧</div>
+            <div class="unit-number">Unit 7</div>
+            <div class="unit-title">Family</div>
+            <div class="unit-cn">家庭</div>
+            <span class="unit-tag">Mom · Dad · Brother</span>
+        </a>
+
+        <a href="unit-u8.html" class="unit-card u8">
+            <div class="unit-emoji">🏃</div>
+            <div class="unit-number">Unit 8</div>
+            <div class="unit-title">Actions</div>
+            <div class="unit-cn">动作</div>
+            <span class="unit-tag">Run · Jump · Sing</span>
+        </a>
+
+        <a href="unit-u9.html" class="unit-card u9">
+            <div class="unit-emoji">👃</div>
+            <div class="unit-number">Unit 9</div>
+            <div class="unit-title">Body Parts</div>
+            <div class="unit-cn">身体部位</div>
+            <span class="unit-tag">Head · Eyes · Nose</span>
+        </a>
+
+        <a href="unit-u10.html" class="unit-card u10">
+            <div class="unit-emoji">🍎</div>
+            <div class="unit-number">Unit 10</div>
+            <div class="unit-title">Food</div>
+            <div class="unit-cn">食物</div>
+            <span class="unit-tag">Apple · Pizza · Milk</span>
+        </a>
+
+        <a href="unit-u11.html" class="unit-card u11">
+            <div class="unit-emoji">🧸</div>
+            <div class="unit-number">Unit 11</div>
+            <div class="unit-title">Toys</div>
+            <div class="unit-cn">玩具游戏</div>
+            <span class="unit-tag">Doll · Car · Ball</span>
+        </a>
+
+        <a href="unit-u12.html" class="unit-card u12">
+            <div class="unit-emoji">🎭</div>
+            <div class="unit-number">Unit 12</div>
+            <div class="unit-title">Review & Show</div>
+            <div class="unit-cn">综合复习演出</div>
+            <span class="unit-tag">Sing · Dance · Celebrate</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        <p>🌟 UpGrade English · 幼儿英语互动课程 · 12个单元全部完成</p>
+        <p style="margin-top:5px;">点击单元卡片进入学习 · 🔊 支持TTS语音朗读</p>
+    </div>
+</div>
+</body>
+</html>
